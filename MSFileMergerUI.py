@@ -18,6 +18,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 class fileMergerUI(object):
     def setupUi(self, Dialog):
+        """
+        this is a standard method created by QC
+        """
         Dialog.setObjectName("Dialog")
         Dialog.resize(578, 316)
         Dialog.setFixedSize(578, 316)
@@ -111,6 +114,9 @@ class fileMergerUI(object):
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
     def retranslateUi(self, Dialog):
+        """
+        this is a standard method created by QC
+        """
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "SED | 2theta file merger"))
         self.pushButton.setText(_translate("Dialog", "Clean and Merge"))
@@ -126,14 +132,21 @@ class fileMergerUI(object):
         self.pushButton_7.setText(_translate("Dialog", "Deselect all"))
 
     def inputFolderDialog(self):
+        """
+        a method being used to open choose directory window
+        """
         self.pushButton.setEnabled(False)
-        self.cleanListView()
+        self.startOver()
         self.inputDirectory = str(QtWidgets.QFileDialog.getExistingDirectory())
         self.lineEdit.setText('{}'.format(self.inputDirectory))
         if self.lineEdit.text() != "": 
             self.pushButton.setEnabled(True)
 
     def listFiles(self):
+        """
+        a method used to scan and then list all 
+        files in a path 
+        """
         pathChoosen = False
 
         try: 
@@ -154,16 +167,26 @@ class fileMergerUI(object):
             self.pushButton_7.setEnabled(True)
 
     def selectAll(self):
+        """
+        a method used to select all items in the QListView 
+        """
         for i in range(self.model.rowCount()):
             item = self.model.item(i)
             item.setCheckState(QtCore.Qt.Checked)
 
     def deselectAll(self):
+        """
+        a method used to deselect all items in the QListView 
+        """
         for i in range(self.model.rowCount()):
             item = self.model.item(i)
             item.setCheckState(QtCore.Qt.Unchecked)
     
-    def cleanListView(self): 
+    def startOver(self): 
+        """
+        a method used to setup some parameters before start 
+        proccessing the files..
+        """
         try:
             self.model = QtGui.QStandardItemModel()
             self.listView.setModel(self.model)
@@ -186,10 +209,25 @@ class fileMergerUI(object):
         self.lineEdit_3.setValidator(validator)
 
     def isLineEmpty(self, line):
+        """
+        a method used to check if the line blank or not 
+        """
         #print (len(line.strip()))
         return len(line.strip()) == 0
 
     def cleanAndMerge(self): 
+        """
+        This method goes through the files and does the follwoing: 
+        - Read the files
+        - Proccess the files 
+            - merge all the files in one temp file 
+            - go the lines of the temp file, line by line 
+            - ignore any line starts with #
+            - ignore any blank lines 
+            - save the lines in a list 
+            - sort the lines 
+            - write them back in a .dat file 
+        """
         fileNames = []
         rawData = list()
         
@@ -215,10 +253,6 @@ class fileMergerUI(object):
                         with open(self.inputDirectory+"/"+filename) as infile:
                             contents = infile.read()
                             outfile.write(contents)
-                
-                #with open(self.inputDirectory+"/"+"output_file.txt") as f_in:
-                #    lines = filter(None, (line.rstrip() for line in f_in))
-                #    rawData.append(lines)
 
                 with open (self.inputDirectory+"/"+"output_file.txt", "r") as fin: 
                     for line in fin:
@@ -235,16 +269,18 @@ class fileMergerUI(object):
                 outfile.close()
                 fin.close()
                 fOut.close()
-                
+
                 UIMessage("Done", "The file: {} has been successfully created".format(self.lineEdit_3.text()), "The file "\
                     "can be found at this path {}".format(self.inputDirectory)).showInformation()
                 os.remove(self.inputDirectory+"/"+"output_file.txt")
-                self.cleanListView()
+                self.startOver()
                 self.openDestinationFolder()
 
-        
-
     def openDestinationFolder(self):
+        """
+        This method is used to open Windows window, which is the window 
+        that contains the output file. 
+        """
         FILEBROWSER_PATH = os.path.join(os.getenv('WINDIR'), 'explorer.exe') # path to explorer.exe 
         path = os.path.normpath(self.inputDirectory)
         if os.path.isdir(path):
