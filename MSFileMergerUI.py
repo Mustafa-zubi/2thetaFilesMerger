@@ -64,7 +64,7 @@ class fileMergerUI(object):
         self.lineEdit_3.setGeometry(91, 4, 150, 21)
         self.label_5 = QtWidgets.QLabel(self.layoutWidget)
         self.label_5.setObjectName("label_5")
-        self.label_5.setGeometry(250, 4, 140, 20)
+        self.label_5.setGeometry(250, 4, 150, 20)
         self.label_5.setStyleSheet("background-color: yellow;")
         self.vlaidateOutputFN()
         self.listView = QtWidgets.QListView(Dialog)
@@ -123,7 +123,7 @@ class fileMergerUI(object):
         self.pushButton_2.setText(_translate("Dialog", "Cancel"))
         self.label.setText(_translate("Dialog", "SED | MS Beamline | 2theta files merger "))
         self.label_3.setText(_translate("Dialog", "Output file name:"))
-        self.label_5.setText(_translate("Dialog", "Allowed: [A-Z][a-z][0-9][_]"))
+        self.label_5.setText(_translate("Dialog", "Allowed: [A-Z][a-z][0-9][_-]"))
         self.label_4.setText(_translate("Dialog", "Files to be merged:"))
         self.label_2.setText(_translate("Dialog", "Source files path:"))
         self.pushButton_3.setText(_translate("Dialog", "..."))
@@ -190,6 +190,7 @@ class fileMergerUI(object):
         try:
             self.model = QtGui.QStandardItemModel()
             self.listView.setModel(self.model)
+            self.inputDirectory=""
             self.pushButton_6.setEnabled(False)
             self.pushButton_7.setEnabled(False)
             self.pushButton.setEnabled(False)
@@ -204,7 +205,7 @@ class fileMergerUI(object):
         The follwoing RegExp just accepts characters A-Z, a-z and _
         Also, numbers 0-9  
         """ 
-        regexp = QtCore.QRegExp('^[A-Z0-9a-z_]{0,30}$')
+        regexp = QtCore.QRegExp('^[A-Z0-9a-z_-]{0,30}$')
         validator = QtGui.QRegExpValidator(regexp)
         self.lineEdit_3.setValidator(validator)
 
