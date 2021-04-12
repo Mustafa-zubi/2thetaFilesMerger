@@ -10,4 +10,4 @@ This program has been tested on Python3 on Windows 10, thus it should be firstll
 3. run the program (python MSFileMergerUI.py)
 
 B. Using binary file: 
-- will provided later 
+- download the exe file from this link: https://drive.sesame.org.jo/owncloud/index.php/s/cjouN4lC1YROkYY 
