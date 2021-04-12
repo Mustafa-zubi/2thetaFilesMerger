@@ -13,5 +13,6 @@ B. Using binary file:
 - download the exe file from this link: https://drive.sesame.org.jo/owncloud/index.php/s/cjouN4lC1YROkYY 
 
 C. Contact information:
-- Mustafa Alzubi (mostafa.zoubi @ sesame.org.jo) 
+- For problems and bugs reporting: Mustafa Alzubi (mostafa.zoubi @ sesame.org.jo)
+- How to use and more information: Mahmoud Abdelateef 
  
