@@ -11,3 +11,6 @@ This program has been tested on Python3 on Windows 10, thus it should be firstll
 
 B. Using binary file: 
 - download the exe file from this link: https://drive.sesame.org.jo/owncloud/index.php/s/cjouN4lC1YROkYY 
+
+C. Contact information: 
+ 
