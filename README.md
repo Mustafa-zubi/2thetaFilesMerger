@@ -14,5 +14,4 @@ B. Using binary file:
 
 C. Contact information:
 - For problems and bugs reporting: Mustafa Alzubi (mostafa.zoubi @ sesame.org.jo)
-- How to use and more information: Mahmoud Abdelateef 
- 
+- How to use and more information: Mahmoud Abdellatief (mahmoud.abdellatief @ sesame.org.jo)
