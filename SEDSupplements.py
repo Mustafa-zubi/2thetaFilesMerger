@@ -1,6 +1,17 @@
 """
 This class was written by Mustafa Alzubi | DCA group at SESAME. 
 Version: 1.0
+
+The idea of this class is that it is a general class being used 
+with many software packages written at SESAME. 
+
+The class is used to standardize: 
+-	CLI input request.
+-	CLI messages (warning, error, information)
+-	GUI messages (warning, error, information)
+-	Progress bar 
+-	Yes / No question 
+
 """
 import sys
 import progressbar
